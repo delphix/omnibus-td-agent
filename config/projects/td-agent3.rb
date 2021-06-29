@@ -16,7 +16,7 @@ else
   install_dir "#{default_root}/#{name}"
 end
 
-build_version   "3.7.1"
+build_version   "3.8.1"
 build_iteration 0
 # Custom Delphix version & revision
 pkg_ver = ENV["PACKAGE_VERSION"]
@@ -32,7 +32,8 @@ override :zlib, :version => '1.2.11'
 override :jemalloc, :version => '4.5.0'
 override :rubygems, :version => '2.6.14'
 override :postgresql, :version => '9.6.9'
-override :fluentd, :version => 'fddde2ff1f5b1cf8d0d27cee3f59f289b00b257d' # v1.10.2 with windows patch
+override :nokogiri, :version => '1.10.10'
+override :fluentd, :version => '24fe4cbc50d1ea1e053eb6d336e6fc0f797eeb12' # v1.11.5
 
 # td-agent dependencies/components
 #dependency "td-agent"
@@ -60,9 +61,6 @@ when "linux"
     runtime_dependency "cyrus-sasl-lib" # for rdkafka
     if ohai["platform_version"][0].to_i <= 7
       runtime_dependency "initscripts"
-      if ohai["platform_version"][0].to_i <= 6
-        runtime_dependency "redhat-lsb-core"
-      end
     end
   end
 end
